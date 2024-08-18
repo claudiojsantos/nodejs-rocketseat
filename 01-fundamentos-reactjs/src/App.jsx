@@ -1,8 +1,13 @@
+import { Header } from './components/Header'
 import Post from './Post'
+
+import './styles.css'
 
 function App() {
   return (
     <div>
+      <Header />
+      
       <Post 
         author="Claudio Santos" 
         description="Aliqua ipsum elit aute voluptate labore cupidatat officia nulla sunt amet pariatur." 
