@@ -31,6 +31,12 @@ export function Post({author, publishedAt, content}){
     setNewCommentText(event.target.value)
   }
 
+  function deleteComment(comment) {
+    const commentsWithoutDeletedOne = comments.filter(c => { return comment !== commenToDelete })
+    
+    setComments(commentsWithoutDeletedOne)
+  }
+
   // const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
   //   day: '2-digit',
   //   month: 'long',
@@ -57,9 +63,9 @@ export function Post({author, publishedAt, content}){
       <div className={styles.content}>
         {content.map(line => {
           if (line.type === 'paragraph') {
-            return  <p>{line.content}</p>
+            return  <p key={line.content}>{line.content}</p>
           } else if (line.type === 'link') {
-            return <p><a href='#'>{line.content}</a></p>
+            return <p key={line.content}><a href='#'>{line.content}</a></p>
           }
         })}
       </div>
@@ -81,7 +87,11 @@ export function Post({author, publishedAt, content}){
 
       <div className={styles.commentList}>
         {comments.map(comment => (
-          <Comment content={comment} />
+          <Comment 
+            key={comment} 
+            content={comment} 
+            onDeleteComment={deleteComment} 
+          />
         ))}
       </div>
     </article>
