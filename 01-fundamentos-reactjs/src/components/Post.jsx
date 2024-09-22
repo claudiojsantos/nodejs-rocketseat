@@ -1,4 +1,4 @@
-import { add, format, formatDistanceToNow } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import ptBr from 'date-fns/locale/pt-BR'
 
 import { Avatar } from './Avatar'
@@ -31,8 +31,10 @@ export function Post({author, publishedAt, content}){
     setNewCommentText(event.target.value)
   }
 
-  function deleteComment(comment) {
-    const commentsWithoutDeletedOne = comments.filter(c => { return comment !== commenToDelete })
+  function deleteComment(commenToDelete) {
+    const commentsWithoutDeletedOne = comments.filter(comment => { 
+      return comment !== commenToDelete 
+    })
     
     setComments(commentsWithoutDeletedOne)
   }
